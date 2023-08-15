@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 
             s = sdao.loginStudent(email, password);
             if (s != null) {
-                HttpSession session = request.getSession(true);
+                HttpSession session = request.getSession();
                 if (session != null) {
                     session.setAttribute("name", s.getName());
                     session.setAttribute("email", s.getEmail());

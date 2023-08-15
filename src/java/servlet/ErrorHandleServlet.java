@@ -11,13 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author user
  */
-public class LogoutServlet extends HttpServlet {
+public class ErrorHandleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +32,15 @@ public class LogoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            String name = null;
-            session.setAttribute("name", name);
-            session.invalidate();
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ErrorHandleServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ErrorHandleServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -53,7 +56,23 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Login</title>");
+            out.println("<link rel='stylesheet' href='mycss.css' type='text/css' />");
+            out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1 style='color: red'>Invalid or Error Url</h1>");
+            out.println("<a href='home.jsp'>Back to home</a>");
+            out.println("</body>");
+            out.println("</html>");
+            
+        }
     }
 
     /**

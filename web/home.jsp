@@ -16,8 +16,14 @@
         <link rel='stylesheet' href='mycss.css' type='text/css' />
     </head>
     <body>
+        <%
+            session = request.getSession();
+            if (!session.getAttribute("name").equals(null) ) {
+        %>
         <% String username = (String) session.getAttribute("name");%>
         <h1>Hello <%= username%>!</h1><br>
+        <h2>Session <%= session%>!</h2><br>
+        <h3><%= session.getAttribute("name")%></h3>
 
         <form action="addStudent" method="get">
             <input type="submit" value="add student" class="btn orginput" style="float: right">
@@ -35,7 +41,7 @@
                 }
             %>
         </form>
-
+        
         <form action="logout" method="post">
             <input type="submit" value="logout" class="btn orginput" style="float: right"><br>
         </form>
@@ -86,5 +92,13 @@
                 }
             %>
         </table>
+        <%
+        } else {
+        %>
+        <h1 style='color: red'>Please Login First</h1>
+        <a href='login.jsp'>Back to login</a>
+        <%
+            }
+        %>
     </body>
 </html>

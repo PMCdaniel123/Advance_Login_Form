@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Please login to your account</h1>
+        <h3><%= session.getAttribute("name")%></h3>
         <% 
             if (request.getAttribute("error")!= null) {
                 String error = (String) request.getAttribute("error");
